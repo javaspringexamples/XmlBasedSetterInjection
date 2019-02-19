@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<util:map id="objectName">
+		<entry key="A" value="Object A" />
+		<entry key="B" value="Object B" />
+		<entry key="C" value="Object C" />
+	</util:map>
+
+	<bean id="objectA"
+		class="javaspringexamples.spring.ioc.setterInjection.xml.A">
+		<property name="b" ref="objectB" />
+		<property name="c" ref="objectC" />
+	</bean>
+
+	<bean id="objectB"
+		class="javaspringexamples.spring.ioc.setterInjection.xml.B">
+		<property name="name" value="#{objectName[B]}" />
+	</bean>
+
+	<bean id="objectC"
+		class="javaspringexamples.spring.ioc.setterInjection.xml.C">
+		<property name="name" value="#{objectName[C]}" />
+	</bean>
+</beans>
